@@ -17,7 +17,7 @@ class Product {
     
     init(){
         self.id = "";
-        self.idFamily ="";
+        self.idFamily = "";
         self.product="";
         self.price = 0.0
         self.description = ""

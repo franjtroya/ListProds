@@ -11,12 +11,21 @@ import Foundation
 class ProdListPresenter: PresenterProt {
     
     private let repo: Repository
-    private let view: ViewController // ¿View controller o interfaz?
+    weak private var view: ViewController? // ¿View controller o interfaz?
     var prods : [Product]
     
-    init(viewController: ViewController){
-        self.view = viewController
+    init(){
+        self.view = nil
         self.repo = Repository()
+        self.prods = []
+    }
+    
+    func attachView(viewC:ViewController){
+        self.view = viewC
+    }
+    
+    func detachView() {
+        view = nil
     }
     /*
      //FIXME: startLoading: ¿Servirá para todo, lo veremos?
@@ -31,7 +40,7 @@ class ProdListPresenter: PresenterProt {
     }
     
     func notifyView() {
-        view.setProds(self.prods)
+        view?.setProds(self.prods)
     }
     
     func allProds() {
